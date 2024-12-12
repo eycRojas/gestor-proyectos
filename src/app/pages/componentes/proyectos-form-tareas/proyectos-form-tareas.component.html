@@ -1,0 +1,40 @@
+<app-navbar />
+<p-toast />
+<div class="container">
+  <div class="form-proyecto">
+    <h3>Datos del Proyecto</h3>
+    <br />
+    <form [formGroup]="formProyecto">
+      <div class="fiel">
+        <label for="nombre">Nombre del proyecto:</label><br>
+        <input type="text" pInputText formControlName="nombre" readonly />
+      </div>
+      <div class="field">
+        <label for="descripcion">Descripción del proyecto:</label><br>
+        <input type="text" pInputText formControlName="descripcion" readonly />
+      </div>
+    </form>
+    <p class="p1">Usuarios asignados:</p>
+    <ul>
+      @for (usuario of usuariosAsignados; track usuario.id) {
+      <li>
+        {{usuario.nombre}} {{usuario.apellidoPaterno}} {{usuario.apellidoMaterno}}
+      </li>
+      }
+    </ul>
+    <br>
+    <p class="p1">Tareas:</p>
+    <ul>
+      @for (tarea of tareas; track tarea.id) {
+      <li>
+        {{tarea.nombre}} {{tarea.descripcion}}
+      </li>
+      }@empty {
+      <p>*Este proyecto no tiene usuarios asignados*</p>
+      }
+    </ul>
+    <div>
+      <button type="submit" (onClick)="updateProyecto()" class="btn btn-primary">Guardar</button>
+    </div>
+  </div>
+</div>

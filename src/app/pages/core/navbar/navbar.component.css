@@ -1,0 +1,30 @@
+nav {
+    background-color: #343a40; /* Fondo oscuro */
+    padding: 10px 20px;
+  }
+  
+  nav p {
+    color: white;
+    font-size: 14px;
+    margin: 0;
+  }
+  
+  nav button {
+    margin-left: 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  nav button:hover {
+    background-color: #218838;
+  }
+  
+  nav img {
+    width: 40px; /* Ajusta el tamaño */
+    height: auto;
+    padding-right: 10px;
+  }

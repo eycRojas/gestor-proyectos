@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="form-log-in">
+    <h3>Registrarse</h3>
+    <br />
+    <form [formGroup]="formReg" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="exampleInputNombres"
+          formControlName="nombre"
+          placeholder="Nombre (s)"
+        />
+      </div>
+      <div class="mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="exampleInputApePaterno"
+          formControlName="apellidoPaterno"
+          placeholder="Apellido paterno"
+        />
+      </div>
+      <div class="mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="exampleInputApeMaterno"
+          formControlName="apellidoMaterno"
+          placeholder="Apellido materno"
+        />
+      </div>
+      <div class="mb-3">
+        <input
+          type="email"
+          class="form-control"
+          id="exampleInputEmail1"
+          formControlName="email"
+          placeholder="Email"
+        />
+      </div>
+      <div class="mb-3">
+        <input
+          type="password"
+          class="form-control"
+          id="exampleInputPassword1"
+          formControlName="contrasenia"
+          placeholder="Ingresa tu contraseña"
+        />
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary">Crear cuenta</button>
+      </div>
+    </form>
+    <hr />
+    <div>
+      <p>
+        ¿Ya tienes una cuenta?
+        <a href="/auth/log-in">Iniciar sesión</a>
+      </p>
+    </div>
+  </div>
+</div>

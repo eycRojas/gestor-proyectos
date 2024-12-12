@@ -1,0 +1,57 @@
+input {
+  height: 30px;
+  /* Ajusta la altura */
+  padding: 5px;
+  /* Ajusta el relleno interno */
+  font-size: 14px;
+  /* Ajusta el tamaño del texto */
+  width: 100%;
+  max-width: 400px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+  margin-top: 80px;
+  /* Espaciado respecto al navbar */
+}
+
+.form-proyecto {
+  width: 100%;
+  max-width: 600px;
+  /* Mayor ancho para pantallas grandes */
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-proyecto label {
+  margin-bottom: 5px;
+}
+
+.form-proyecto input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.btnAgregar {
+  height: 30px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: none;
+  background-color: #5099e7;
+  color: white;
+  cursor: pointer;
+}
+
+.btnAgregar:hover {
+  background-color: #2d6bad;
+}

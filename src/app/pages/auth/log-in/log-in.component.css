@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  height: 100vh; /* Usa toda la altura de la ventana */
+}
+
+.form-log-in {
+  width: 100%; /* El div ocupará el 80% del ancho del contenedor */
+  max-width: 300px; /* Limita el ancho máximo si es necesario */
+}
+
+button {
+  width: 100%; /* El div ocupará el 80% del ancho del contenedor */
+  max-width: 300px; /* Limita el ancho máximo si es necesario */
+  margin: 0 auto; /* Centra el botón horizontalmente */
+}
+
+p {
+  text-align: center;
+}

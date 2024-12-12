@@ -1,0 +1,17 @@
+<app-navbar></app-navbar>
+<div class="flex gap-4 flex-wrap">
+  @for (proyecto of proyectos; track proyecto.id) {
+    <p-card header="{{ proyecto.nombre }}" subheader="{{ proyecto.nombreCompletoCreador }}" [style]="{ width: '360px' }">
+      <p>
+        {{proyecto.descripcion}}
+      </p>
+      <ng-template pTemplate="footer">
+        <div class="flex gap-4 mt-1">
+          <p-button routerLink="/proyectos/proyectos-form-tareas/{{proyecto.id}}" label="Ver tareas" class="w-full" styleClass="w-full" />
+        </div>
+      </ng-template>
+    </p-card>
+    }@empty {
+    <p>No Tienes proyectos asignados</p>
+    }
+</div>

@@ -1,0 +1,20 @@
+<app-navbar />
+<p-toast />
+<div class="container">
+    <p-card header="Datos del Proyecto" class="w-10">
+      <form [formGroup]="formProyecto" (ngSubmit)="saveProyecto()"
+        class="flex flex-column gap-2">
+        <div class="fiel">
+          <label for="nombre">Nombre del proyecto:</label><br>
+          <input type="text" pInputText formControlName="nombre" />
+        </div>
+        <div class="field">
+          <label for="descripcion">Descripción del proyecto:</label><br>
+          <input type="text" pInputText formControlName="descripcion" />
+        </div>
+        <div>
+          <p-button label="Guardar" type="submit" />
+        </div>
+      </form>
+    </p-card>
+  </div>

@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="form-log-in">
+    <h3>Inicio de sesión</h3>
+    <br />
+    <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <input
+          type="email"
+          class="form-control"
+          id="exampleInputEmail1"
+          formControlName="email"
+          placeholder="Email"
+        />
+      </div>
+      <div class="mb-3">
+        <input
+          type="password"
+          class="form-control"
+          id="exampleInputPassword1"
+          formControlName="password"
+          placeholder="Ingresa tu contraseña"
+        />
+      </div >
+      <div>
+        <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+      </div>
+    </form>
+    <hr />
+    <div>
+      <p>
+        ¿No tienes una cuenta?
+        <a href="/auth/sign-up">Cree una</a>
+      </p>
+    </div>
+  </div>
+</div>

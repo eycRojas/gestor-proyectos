@@ -1,0 +1,21 @@
+<app-navbar></app-navbar>
+<div class="flex gap-4 flex-wrap">
+  @for (proyecto of proyectos; track proyecto.id) {
+  <p-card header="{{ proyecto.nombre }}" [style]="{ width: '360px' }">
+    <p>
+      Número de participantes: {{(proyecto.usuariosAsignados).length}}
+    </p>
+    <p>
+      Número de tareas: {{(proyecto.tareas).length}}
+    </p>
+    <ng-template pTemplate="footer">
+      <div class="flex gap-1 mt-1">
+        <p-button (onClick)="deleteProyecto(proyecto.id)" label="Borrar" severity="secondary" />
+        <p-button routerLink="/proyectos/proyectos-form-usuario/{{proyecto.id}}" label="Ver" severity="primary" />
+      </div>
+    </ng-template>
+  </p-card>
+  }@empty {
+  <p>No Tienes proyectos creados</p>
+  }
+</div>

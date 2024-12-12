@@ -1,0 +1,61 @@
+<app-navbar />
+<p-toast />
+<div class="container">
+  <div class="form-proyecto">
+    <h3>Datos del Proyecto</h3>
+    <br />
+    <form [formGroup]="formProyecto" (ngSubmit)="updateProyecto()">
+      <div class="field">
+        <label for="nombre">Nombre del proyecto:</label><br>
+        <input type="text" pInputText formControlName="nombre" />
+        <label for="descripcion">Descripción del proyecto:</label><br>
+        <input type="text" pInputText formControlName="descripcion" />
+        <button type="submit" class="btnAgregar">Guardar</button>
+      </div>
+      <br>
+    </form>
+    <p class="p1">Usuarios asignados:</p>
+    <ul>
+      @for (usuario of usuariosAsignados; track usuario.id) {
+      <li>
+        {{usuario.nombre}} {{usuario.apellidoPaterno}} {{usuario.apellidoMaterno}}
+      </li>
+      }@empty {
+      <p>*Este proyecto no tiene usuarios asignados*</p>
+      }
+    </ul>
+    <br>
+    <form [formGroup]="formUsuario" (ngSubmit)="addParticpante()">
+      <p class="p1">Agregar usuario:</p>
+      <div class="field">
+        <label for="emailUsuario">Email del usuario:</label><br>
+        <input type="text" pInputText formControlName="emailUsuario" />
+        <button type="submit" class="btnAgregar">Agregar usuario</button>
+      </div>
+      <br>
+    </form>
+    <p class="p1">Tareas:</p>
+    <ul>
+      @for (tarea of tareas; track tarea.id) {
+      <li>
+        {{tarea.nombre}} {{tarea.descripcion}}
+      </li>
+      }@empty {
+      <p>*Este proyecto no tiene tareas*</p>
+      }
+    </ul>
+    <br>
+    <form [formGroup]="formTarea" (ngSubmit)="saveTarea()">
+      <div class="field">
+        <p class="p1">Agregar tarea:</p>
+        <label for="nombreTarea">Nombre de la tarea</label><br>
+        <input type="text" pInputText formControlName="nombreTarea" />
+        <label for="descripcionTarea">Descripcion:</label><br>
+        <input type="text" pInputText formControlName="descripcionTarea" />
+        <label for="emailUsuarioAsignado">Email del usuario a asignar:</label><br>
+        <input type="text" pInputText formControlName="emailUsuarioAsignado" />
+        <button type="submit" class="btnAgregar">Agregar tarea</button>
+      </div>
+    </form>
+  </div>
+</div>
