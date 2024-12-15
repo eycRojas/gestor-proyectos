@@ -16,14 +16,15 @@
     </form>
     <p class="p1">Usuarios asignados:</p>
     <ul>
-      @for (usuario of usuariosAsignados; track usuario.id) {
-      <li>
-        {{usuario.nombre}} {{usuario.apellidoPaterno}} {{usuario.apellidoMaterno}}
-      </li>
-      }@empty {
-      <p>*Este proyecto no tiene usuarios asignados*</p>
-      }
+      <ng-container *ngIf="usuariosAsignados && usuariosAsignados.length > 0; else noUsuarios">
+        <li *ngFor="let usuario of usuariosAsignados">
+          {{usuario.nombre}} {{usuario.apellidoPaterno}} {{usuario.apellidoMaterno}}
+        </li>
+      </ng-container>
     </ul>
+    <ng-template #noUsuarios>
+      <p>*No hay usuarios asignados</p>
+    </ng-template>
     <br>
     <form [formGroup]="formUsuario" (ngSubmit)="addParticpante()">
       <p class="p1">Agregar usuario:</p>
@@ -36,24 +37,28 @@
     </form>
     <p class="p1">Tareas:</p>
     <ul>
-      @for (tarea of tareas; track tarea.id) {
-      <li>
-        {{tarea.nombre}} {{tarea.descripcion}}
-      </li>
-      }@empty {
-      <p>*Este proyecto no tiene tareas*</p>
-      }
+      <ng-container *ngIf="tareas && tareas.length > 0; else noTareas">
+        <li *ngFor="let tarea of tareas">
+          {{tarea.descripcion}} | Estado: {{tarea.estado}} | Usuario: {{tarea.nombreUsuario}}
+        </li>
+      </ng-container>
     </ul>
+    <ng-template #noTareas>
+      <p>*Aún no hay tareas asignadas</p>
+    </ng-template>
     <br>
     <form [formGroup]="formTarea" (ngSubmit)="saveTarea()">
       <div class="field">
         <p class="p1">Agregar tarea:</p>
-        <label for="nombreTarea">Nombre de la tarea</label><br>
-        <input type="text" pInputText formControlName="nombreTarea" />
-        <label for="descripcionTarea">Descripcion:</label><br>
-        <input type="text" pInputText formControlName="descripcionTarea" />
+        <label for="descripcion">Tarea:</label><br>
+        <input type="text" pInputText formControlName="descripcion" />
         <label for="emailUsuarioAsignado">Email del usuario a asignar:</label><br>
-        <input type="text" pInputText formControlName="emailUsuarioAsignado" />
+        <form [formGroup]="formEmail">
+          <p-dropdown class="dropdown" formControlName="emailUsuarioAsignado" [options]="emailUsuariosParaTareas"
+            [editable]="true" optionLabel="email" placeholder="Selecciona un email" />
+          <br>
+          <br>
+        </form>
         <button type="submit" class="btnAgregar">Agregar tarea</button>
       </div>
     </form>

@@ -21,12 +21,17 @@ export class TareaService {
     return this.http.get<TareaDTO>(`${this.apiUrl}/${id}`);
   }
 
-  saveTarea(usuario: Tarea) : Observable<Tarea>{
-    return this.http.post<TareaDTO>(this.apiUrl, usuario);
+  saveTarea(proyectoId: number, usuarioId: number, tarea: Tarea) : Observable<TareaDTO>{    
+    tarea.estado = "PENDIENTE";
+    tarea.nombre = "tarea";
+    console.log(`${this.apiUrl}/${proyectoId}/${usuarioId}`, tarea);
+    return this.http.post<TareaDTO>(`${this.apiUrl}/${proyectoId}/${usuarioId}`, tarea);
   }
 
-  updateTarea(usuario: Tarea){
-    return this.http.put(this.apiUrl, usuario);
+  updateTarea(tarea: Tarea): Observable<Tarea>{
+    console.log(tarea.id, tarea.descripcion, tarea.estado);
+    console.log(this.apiUrl, tarea);
+    return this.http.put<Tarea>(this.apiUrl, tarea);
   }
 
   deleteTarea(proyectoId: number, usuarioId: number){

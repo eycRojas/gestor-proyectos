@@ -34,15 +34,24 @@
   font-size: 14px;
   border-radius: 8px;
   border: none;
-  background-color: #5099e7;
+  background-color: #2563eb;
   color: white;
   cursor: pointer;
 }
 
 .btnAgregar:hover {
-  background-color: #2d6bad;
+  background-color: #1f52c1;
 }
 
 .p1{
   font-weight: bold;
+}
+
+label{
+  height: 80%;
+
+}
+
+.dropdown {
+  height: 80%;
 }

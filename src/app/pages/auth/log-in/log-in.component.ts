@@ -45,6 +45,7 @@ export class LogInComponent implements OnInit {
             this.usuario = usuarioDTO;
 
             this.usuarioService.setUsuario(this.usuario);
+            localStorage.setItem('usuarioId', usuarioDTO.id.toString());
 
             this.router.navigate(['/home']);
           },

@@ -10,7 +10,7 @@ import {
 import { ProyectoService } from '../../../services/proyecto.service';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -41,11 +41,11 @@ export class ProyectosFormComponent {
   edit: boolean = false;
   usuario: UsuarioDTO | null = null;
   usuarioId: any;
+  usuarioEmail: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private proyectoService: ProyectoService,
-    private activatedRoute: ActivatedRoute,
     private messageService: MessageService,
     private router: Router,
     private usuarioService: UsuarioService
@@ -57,7 +57,14 @@ export class ProyectosFormComponent {
   }
 
   ngOnInit(): void {
-    this.usuario = this.usuarioService.getUsuario();
+    const usuarioIdString = localStorage.getItem('usuarioId');
+    const usuarioId: number = Number(usuarioIdString);
+    this.usuarioService.getUsuarioById(usuarioId).subscribe({
+      next: (usuarioDTO) => {
+        this.usuario = usuarioDTO;        
+        this.usuarioService.setUsuario(this.usuario);        
+      }
+    })
   }
 
   saveProyecto() {
@@ -71,6 +78,7 @@ export class ProyectosFormComponent {
     }
     if (this.usuario) {
       this.usuarioId = this.usuario.id;
+      this.usuarioEmail = this.usuario.email;
       this.proyectoService.saveProyecto(this.formProyecto.value, this.usuarioId).subscribe({
         next: () => {
           this.messageService.add({
@@ -78,6 +86,16 @@ export class ProyectosFormComponent {
             summary: 'Creado',
             detail: 'Proyecto creado correctamente',
           });
+          
+          this.usuarioService.getUsuarioByEmail(this.usuarioEmail).subscribe({
+            next: (usuarioDTO) => {
+              this.usuario = usuarioDTO;
+  
+              this.usuarioService.setUsuario(this.usuario);              
+            },
+            error: () => { },
+          });
+
           this.router.navigateByUrl('/proyectos/mis-proyectos');
         },
         error: () => {

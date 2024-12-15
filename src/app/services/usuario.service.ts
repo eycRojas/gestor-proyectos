@@ -17,7 +17,8 @@ export class UsuarioService {
   currentUsuario = this.currentUsuarioSubject.asObservable();
 
   setUsuario(usuario: UsuarioDTO) {
-    this.currentUsuarioSubject.next(usuario);
+    console.log("Enviando usuario");
+    this.currentUsuarioSubject.next(usuario);    
   }
 
   getUsuario() {

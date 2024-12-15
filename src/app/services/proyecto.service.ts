@@ -27,6 +27,7 @@ export class ProyectoService {
   }
 
   saveProyecto(proyecto: Proyecto, usuarioId: number): Observable<Proyecto> {
+    console.log(proyecto);
     return this.http.post<Proyecto>(`${this.apiUrl}/${usuarioId}`, proyecto);
   }
 
@@ -40,7 +41,7 @@ export class ProyectoService {
 
   addParticipante(proyectoId: number, usuarioId: number){   
     console.log(proyectoId, usuarioId)
-    console.log(`${this.apiUrl}/${proyectoId}/addParticipante/${usuarioId}`);
-    return this.http.put(`${this.apiUrl}/${proyectoId}/addParticipante/${usuarioId}`, {});
+    console.log(`${this.apiUrl}/addParticipante/${proyectoId}/${usuarioId}`);
+    return this.http.post(`${this.apiUrl}/addParticipante/${proyectoId}/${usuarioId}`, {});
   }
 }

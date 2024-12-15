@@ -26,7 +26,14 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.logo = "assets/imagenes/logo.png";
-    this.usuario = this.usuarioService.getUsuario();
+    
+    const usuarioIdString = localStorage.getItem('usuarioId');
+    const usuarioId: number = Number(usuarioIdString);
+    this.usuarioService.getUsuarioById(usuarioId).subscribe({
+      next: (usuarioDTO) => {
+        this.usuario = usuarioDTO;   
+      }
+    })    
   }
 
   cerrarSesion() {

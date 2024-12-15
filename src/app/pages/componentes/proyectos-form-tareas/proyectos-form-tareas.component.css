@@ -55,3 +55,14 @@ input {
 .btnAgregar:hover {
   background-color: #2d6bad;
 }
+
+.ml-2 {
+  font-size: 80%;
+}
+
+.flex-container {
+  display: flex;
+  gap: 1rem;
+  /* Espaciado entre elementos */
+  align-items: center;
+}

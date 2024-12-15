@@ -16,25 +16,36 @@
     </form>
     <p class="p1">Usuarios asignados:</p>
     <ul>
-      @for (usuario of usuariosAsignados; track usuario.id) {
-      <li>
+      <li *ngFor="let usuario of usuariosAsignados">
         {{usuario.nombre}} {{usuario.apellidoPaterno}} {{usuario.apellidoMaterno}}
       </li>
-      }
     </ul>
     <br>
-    <p class="p1">Tareas:</p>
+    <p class="p1">Tus tareas:</p>
     <ul>
-      @for (tarea of tareas; track tarea.id) {
-      <li>
-        {{tarea.nombre}} {{tarea.descripcion}}
-      </li>
-      }@empty {
-      <p>*Este proyecto no tiene usuarios asignados*</p>
-      }
+      <ng-container *ngIf="tareas && tareas.length > 0; else noTareas">
+        <li *ngFor="let tarea of tareas">
+          <ng-container *ngIf="usuarioId === tarea.usuarioId; else noTareaUsuario">
+            {{tarea.descripcion}} | Estado: {{tarea.estado}}
+            <form class="flex-container" [formGroup]="formTarea">
+              <div *ngFor="let estado of estadosTarea" class="field-checkbox">
+                <p-radioButton [inputId]="estado" [value]="estado" formControlName="estadoSeleccionado"
+                  (ngModelChange)="updateTarea($event, tarea.id)" />
+                <label [for]="estado" class="ml-2">
+                  {{ estado }}
+                </label>
+              </div>
+            </form>
+          </ng-container>
+          <ng-template #noTareaUsuario>
+            <p>*No tienes tareas asignadas</p>
+          </ng-template>
+        </li>
+      </ng-container>
+      <br>
     </ul>
-    <div>
-      <button type="submit" (onClick)="updateProyecto()" class="btn btn-primary">Guardar</button>
-    </div>
+    <ng-template #noTareas>
+      <p>*No tienes tareas asignadas</p>
+    </ng-template>
   </div>
 </div>

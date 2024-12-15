@@ -27,10 +27,15 @@ export class MisProyectosComponent {
   ) { }
 
   ngOnInit(): void {
-    this.usuario = this.usuarioService.getUsuario();
-    if (this.usuario) {
-      this.getProyectosByUsuarioId(this.usuario.id); // Solo llama a la función si usuario no es null
-    }
+    const usuarioIdString = localStorage.getItem('usuarioId');
+    const usuarioId: number = Number(usuarioIdString);
+    this.usuarioService.getUsuarioById(usuarioId).subscribe({
+      next: (usuarioDTO) => {
+        this.usuario = usuarioDTO;           
+        this.getProyectosByUsuarioId(this.usuario.id);
+        this.usuarioService.setUsuario(this.usuario);
+      }
+    })
   }
 
   getProyectosByUsuarioId(usuarioId: number) {
@@ -51,6 +56,11 @@ export class MisProyectosComponent {
         });
         if (this.usuario) {
           this.getProyectosByUsuarioId(this.usuario.id);
+          this.usuarioService.getUsuarioById(this.usuario.id).subscribe({
+            next: (usuario) => {
+              this.usuarioService.setUsuario(usuario);
+            }
+          })
         }
       },
       error: () => {

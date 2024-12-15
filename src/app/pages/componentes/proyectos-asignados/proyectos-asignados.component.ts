@@ -25,10 +25,14 @@ export class ProyectosAsignadosComponent {
   ) { }
 
   ngOnInit(): void {
-    this.usuario = this.usuarioService.getUsuario();
-    if (this.usuario) {
-      this.proyectos = this.usuario.proyectosAsignados;
-      console.log(this.proyectos)
-    }
+    const usuarioIdString = localStorage.getItem('usuarioId');
+    const usuarioId: number = Number(usuarioIdString);
+    this.usuarioService.getUsuarioById(usuarioId).subscribe({
+      next: (usuarioDTO) => {
+        this.usuario = usuarioDTO;
+        this.proyectos = this.usuario.proyectosAsignados;
+        this.usuarioService.setUsuario(this.usuario);        
+      }
+    })
   }
 }

@@ -14,7 +14,7 @@ export const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    //...canActivate(() => redirectUnauthorizedTo(['/auth/log-in'])),
+    ...canActivate(() => redirectUnauthorizedTo(['/auth/log-in'])),
   },
   {
     path: 'auth',
@@ -59,13 +59,11 @@ export const routes: Routes = [
         component: ProyectosFormUsuarioComponent,
         title: 'Formulario de proyectos',
       },
-      
+
     ],
-    //...canActivate(() => redirectUnauthorizedTo(['/auth/log-in'])),
+    ...canActivate(() => redirectUnauthorizedTo(['/auth/log-in'])),
   },
   {
-    path: '**',
-    redirectTo:'',
-    pathMatch: 'full'
+    path: '**', pathMatch: 'full', redirectTo: '/home'
   }
 ];
